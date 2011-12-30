@@ -26,38 +26,58 @@ Installation
 
 Usage
 -----
-
-    parser = Prie::MainParser.new
-    result = parser.parse("1 2 3 + +")
-    parser.execute_loop(result)
+   ```ruby
+   parser = Prie::MainParser.new
+   result = parser.parse("1 2 3 + +")
+   parser.execute_loop(result)
+   ```ruby
 
 Testing
 -------
 
-    bundle exec rspec spec
+   bundle exec rspec spec
 
 
 Embedding Example
 -----------------
 
-    require "prie/main_parser"
+  ```ruby
+  require "prie/main_parser"
+   parser = Prie::MainParser.new
+  while begin print "> " ; input = gets end
+    input = input.strip
+    result = parser.parse(input)
+    parser.execute_loop(result)
+    parser.stack.each_with_index {|obj, i| puts "#{i}:  #{obj}"}
+    puts
+  end 
+  ```
 
-    parser = Prie::MainParser.new
-    while begin print "> " ; input = gets end
-      input = input.strip
-      result = parser.parse(input)
-      parser.execute_loop(result)
-      parser.stack.each_with_index {|obj, i| puts "#{i}:  #{obj}"}
-      puts
-    end 
+CLI / REPL
+----------
+
+`lib/repl.rb` contains a simple REPL that you can use to experiment and learn with.
+
+It might be useful to run it with [rlwrap](http://utopia.knoware.nl/~hlub/uck/rlwrap/#rlwrap) to
+better editing support.
+
+  ```bash
+  cd lib
+  RUBYLIB=. rlwrap ruby repl.rb
+  ```
 
 Extending the API
 -----------------
 
-    require "prie/main_parser"
+To add your own API extend either `Parser` or `MainParser` and then use `def_word` to define your
+own.  Please see `main_parser.rb` for further examples on how to create new words.
 
-    class MyParser < MainParser
-      def hello_world
-        puts "hello world"
-      end
+  ```ruby
+  require "prie/main_parser"
+  class MyParser < MainParser
+    def initialize
+      super
+      def_word("hello-world ( -- )") { puts "hello world" }
     end
+  end
+  ```
