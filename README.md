@@ -89,7 +89,9 @@ The block receives its inputs from the stack according to what was specified in 
 
 Let's take a look at the above example.
 
-    def_word("greeting ( string -- )") { |name| puts "hello #{name}" }
+  ```ruby
+  def_word("greeting ( string -- )") { |name| puts "hello #{name}" }
+  ```
 
 We define a new word `greeting` that takes a single `string` as input and has no output parameters.
 In the _stack delcaration_ we must specify the _type_ (see `stack_object.rb` for a list of types) and in the block
@@ -97,11 +99,15 @@ we can name the parameter whatever we want.
 
 Let's define another word that takes multiple inputs and has an output.
 
-    def_word("sum ( integer integer -- integer )") {|a, b| a + b}
+  ```ruby
+  def_word("sum ( integer integer -- integer )") {|a, b| a + b}
+  ```
 
 Now let's take a look at `dup` to see how we can return multiple values and learn about escaping.
 
-    def_word("dup ( `any -- `any `any)") {|x| [ x, x ] }
+  ```ruby
+  def_word("dup ( `any -- `any `any)") {|x| [ x, x ] }
+  ```
 
 `dup` takes a single input of any type and returns 2 of the same.
 
