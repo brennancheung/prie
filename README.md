@@ -30,7 +30,7 @@ Usage
    parser = Prie::MainParser.new
    result = parser.parse("1 2 3 + +")
    parser.execute_loop(result)
-   ```ruby
+   ```
 
 Testing
 -------
