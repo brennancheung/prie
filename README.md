@@ -101,7 +101,7 @@ Let's define another word that takes multiple inputs and has an output.
 
 Now let's take a look at `dup` to see how we can return multiple values and learn about escaping.
 
-  def_word("dup ( ``any -- ``any ``any)") {|x| [ x, x ] }
+  def_word("dup ( `any -- `any `any)") {|x| [ x, x ] }
 
 `dup` takes a single input of any type and returns 2 of the same.
 
