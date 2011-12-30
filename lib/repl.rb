@@ -2,6 +2,7 @@
 # RUBYLIB=. ruby repl.rb
 
 require "prie/main_parser"
+require 'ruby-debug'
 
 parser = Prie::MainParser.new
 while begin print "> " ; input = gets end
