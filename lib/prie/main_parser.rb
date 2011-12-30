@@ -75,8 +75,8 @@ module Prie
       # This frequently used when we don't know the object's type and want to preserve it.  It can also be used when
       # the output type(s) are not known until the block is executed.
 
-      def_word("1+ ( scope string -- )") {|scope, field| scope[field] = StackObject.new(:integer, scope[field].value + 1)}
-      def_word("1- ( scope string -- )") {|scope, field| scope[field] = StackObject.new(:integer, scope[field].value - 1)}
+      def_word("1+ ( scope string -- )") {|scope, field| scope[field] = StackObject.new(:integer, scope[field].value + 1) }
+      def_word("1- ( scope string -- )") {|scope, field| scope[field] = StackObject.new(:integer, scope[field].value - 1) }
       def_word("<< ( scope string `any -- )") {|scope, string, value| scope[string] = value }
       def_word(">> ( scope string -- `any )") {|scope, string| scope[string] }
       def_word("= ( any any -- boolean )") {|a, b| a == b }
