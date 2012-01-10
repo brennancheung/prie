@@ -116,6 +116,7 @@ module Prie
       def_word("join ( array string -- string )") {|arr, delim| arr.map(&:value).join(delim) }
       def_word("last ( array -- `any )") {|arr| arr.last }
       def_word("length ( array -- integer )") {|arr| arr.length }
+      def_word("make-time ( string -- time )") {|time_str| Time.new(time_str) }
 
       def_word("map ( array array -- array )") do |seq, quot|
         seq.inject([]) do |acc, x|
@@ -127,6 +128,7 @@ module Prie
 
       def_word("new-scope ( string -- )") {|scope_name| self.scopes[scope_name] = Prie::Scope.new}
       def_word("not ( boolean -- boolean )") {|bool| !bool }
+      def_word("now ( -- time )") { Time.now }
       def_word("nth ( array integer -- `any )") {|arr, index| arr[index] }
       def_word("or ( boolean boolean -- boolean )") {|a, b| a || b }
       def_word("prepend ( array `any -- array )") {|arr, value| [ value ] + arr }
@@ -137,6 +139,7 @@ module Prie
       def_word("str-concat ( string string -- string )") {|str1, str2| str1 + str2 }
       def_word("swap ( `any `any -- `any `any )") {|a, b| [b, a] }
       def_word("times ( integer array -- )") {|i, quot| i.times { execute_loop(quot) } }
+      def_word("type ( any -- string )") {|value| StackObject.infer_type(value).to_s }
       def_word("w ( string -- array )") {|str| str.split(' ').map {|x| StackObject.new(:string, x)} }
     end
       

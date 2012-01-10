@@ -146,6 +146,11 @@ describe Prie::MainParser do
     result.first.value.should == 3
   end
 
+  it "make-time" do
+    result = compute(' "2011-11-11" make-time ')
+    result.first.value.should == Time.new("2011-11-11")
+  end
+  
   it "map" do
     result = compute(" [ 1 2 3 ] [ dup * ] map ")
     result.first.value.map(&:value).should == [1, 4, 9]
@@ -157,6 +162,11 @@ describe Prie::MainParser do
 
     result = compute("f not")
     result.first.value.should == true
+  end
+
+  it "now" do
+    result = compute("now")
+    result.first.type.should == :time
   end
 
   it "nth" do
@@ -217,6 +227,11 @@ describe Prie::MainParser do
   it "times" do
     result = compute(" 1 8 [ 2 * ] times ")
     result.first.value.should == 256
+  end
+
+  it "type" do
+    result = compute(' [ 1 now t f "foobar" ] [ type ] map ')
+    result.first.value.map(&:value).should == %w(integer string boolean boolean string)
   end
 
   it "w" do

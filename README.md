@@ -54,7 +54,7 @@ CLI / REPL
 
 `lib/repl.rb` contains a simple REPL that you can use to experiment and learn with.
 
-It might be useful to run it with [rlwrap](http://utopia.knoware.nl/~hlub/uck/rlwrap/#rlwrap) to
+It might be useful to wrap it with [rlwrap](http://utopia.knoware.nl/~hlub/uck/rlwrap/#rlwrap) for
 better editing support.
 
   ```bash
@@ -114,8 +114,8 @@ Now let's take a look at `dup` to see how we can return multiple values and lear
 Normally inputs and outputs are wrapped in a `StackObject` automatically for us.  A `StackObject` contains a type
 and a value.  Most of the time we are only dealing with the values.  What looks like an _integer_ or a _string_ on
 the stack is actually wrapped inside of a `StackObject`.  We use ` `` ` symbol (backquote) to control escaping.
-For input params it will pass in the entire StackObject and just its value.  For output params it will take what
-the block returns and wrap it inside of a `StackObject` with the corresponding _type_ from the stack declaration output
+For input params it will pass in the entire StackObject not just its value.  For output params, it will take what
+the block returns and wrap it inside of a `StackObject` using the corresponding _type_ from the stack declaration output
 params.
 
 We can also return multiple values by simply wrapping the return value in an array.
